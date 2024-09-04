@@ -3,12 +3,14 @@
 namespace App\Livewire;
 
 use App\DockerClient;
+use App\Models\VirtualHost;
 use Livewire\Component;
 use function Psy\sh;
 
 class Xamp extends Component
 {
     public $status = 'stopped';
+    public $virtualHosts = [];
 
     public function start()
     {
@@ -31,6 +33,10 @@ class Xamp extends Component
         if (str_contains($getStatus, 'is running')) {
             $this->status = 'started';
         }
+
+        $getVirtualHosts = VirtualHost::all();
+        
+        $this->virtualHosts = $getVirtualHosts->toArray();
     }
 
     public function dockerCli($command, $args = '')
