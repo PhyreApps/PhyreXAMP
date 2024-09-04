@@ -11,6 +11,11 @@ PhyreXAMP is a local development environment that allows you to build and test w
 - Xdebug
 - Composer
 
+## Supported Platforms
+- Windows
+- MacOS
+- Linux
+
 ## Requirements
 - Docker
 
