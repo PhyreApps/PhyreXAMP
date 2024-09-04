@@ -18,16 +18,16 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function boot(): void
     {
 
-        MenuBar::create()
-            ->onlyShowContextMenu()
-            ->withContextMenu(
-                Menu::new()
-                    ->separator()
-                    ->link('/restart-apache', 'Restart Apache')
-                    ->link('/restart-mysql', 'Restart MySQL')
-                    ->separator()
-                    ->quit()
-            );
+//        MenuBar::create()
+//            ->onlyShowContextMenu()
+//            ->withContextMenu(
+//                Menu::new()
+//                    ->separator()
+//                    ->link('/restart-apache', 'Restart Apache')
+//                    ->link('/restart-mysql', 'Restart MySQL')
+//                    ->separator()
+//                    ->quit()
+//            );
 
 //        Notification::title('Hello from PhyreXAMP!')
 //            ->message('Welcome to PhyreXAMP, the best PHP development environment!')
@@ -35,8 +35,8 @@ class NativeAppServiceProvider implements ProvidesPhpIni
 
         Window::open()
             ->showDevTools(false)
-            ->height(1600)
-            ->width(1600);
+            ->width(800)
+            ->height(600);
 
     }
 
