@@ -17,3 +17,7 @@ Route::get('/', function () {
 
     return redirect('/admin');
 });
+
+Route::get('/menu-bar', function () {
+    return view('menu-bar');
+});

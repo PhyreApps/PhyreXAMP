@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Native\Laravel\Facades\Window;
+
 use Native\Laravel\Contracts\ProvidesPhpIni;
+use Native\Laravel\Facades\MenuBar;
+use Native\Laravel\Menu\Menu;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -13,6 +15,23 @@ class NativeAppServiceProvider implements ProvidesPhpIni
      */
     public function boot(): void
     {
+
+        MenuBar::create()
+            ->onlyShowContextMenu()
+            ->withContextMenu(
+                Menu::new()
+                    ->label('PhyreXAMP')
+                    ->separator()
+                    ->link('/restart-apache', 'Restart Apache')
+                    ->link('/restart-mysql', 'Restart MySQL')
+                    ->separator()
+                    ->quit()
+            );
+
+//        Notification::title('Hello from PhyreXAMP!')
+//            ->message('Welcome to PhyreXAMP, the best PHP development environment!')
+//            ->show();
+
         Window::open()
           //  ->showDevTools(false)
             ->width(1200)
