@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+    # Apache and PHP service
+    web:
+        image: httpd:latest
+        container_name: phyrexamp-httpd
+        ports:
+            - "80:80"
+        volumes:
+            - ./docker/html:/usr/local/apache2/htdocs/
+            - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+            - /Users/bobi/Documents/GitHub/BGManager/public:/usr/local/apache2/htdocs/bgmanager-dev
+
+    # MySQL service
+    mysql:
+        image: mysql:8.0
+        networks:
+            - phyrexamp-network
+        container_name: phyrexamp-mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: phyrexamp
+            MYSQL_USER: phyrexamp
+            MYSQL_PASSWORD: phyrexamp
+        volumes:
+            - ./docker/mysql-data:/var/lib/mysql
+
+    # phpMyAdmin service
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        networks:
+            - phyrexamp-network
+        container_name: phyrexamp-phpmyadmin
+        ports:
+            - "8081:80"
+        environment:
+            PMA_HOST: mysql
+            MYSQL_ROOT_PASSWORD: root
+        depends_on:
+            - mysql
+
+# Define networks
+networks:
+    phyrexamp-network:

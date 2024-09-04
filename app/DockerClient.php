@@ -74,6 +74,11 @@ class DockerClient
         return $this->_request('POST', "/containers/$containerId/restart");
     }
 
+    public function updateContainer($containerId, $containerConfig): array
+    {
+        return $this->_request('POST', "/containers/$containerId/update", $containerConfig);
+    }
+
     public function getContainer($containerId): array
     {
         return $this->_request('GET', "/containers/$containerId/json");
