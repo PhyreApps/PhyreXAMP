@@ -1,7 +1,7 @@
 # PhyreXAMP 
 PhyreXAMP is a local development environment that allows you to build and test websites. It is a combination of free software (Apache, MySQL, PHP) that allows you to locally develop web applications.
 
-![PhyreXAMP](/public/images/screenshot.png)
+![PhyreXAMP](/native-app/public/images/screenshot.png)
 
 ## Features
 - Apache
