@@ -12,24 +12,19 @@ services:
         volumes:
             - ./docker/html:/var/www/html
             - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
-#            - /Users/bobi/Documents/GitHub/BGManager/public:/usr/local/apache2/htdocs/bgmanager-dev
+            - /Users/bobi/PhpstormProjects/microweber/:/var/www/html/bgmanager-dev/
 
-    php82-fpm:
-        image: php:8.2-fpm
-        container_name: phyrexamp-php82-fpm
-        expose:
-            -  "9000"
-        networks:
-            - phyrexamp-network
-        volumes:
-            - ./docker/html:/var/www/html
     php83-fpm:
-        image: php:8.3-fpm
         container_name: phyrexamp-php83-fpm
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
         expose:
             -  "9000"
         volumes:
             -   ./docker/html:/var/www/html
+            - /Users/bobi/PhpstormProjects/microweber/:/var/www/html/bgmanager-dev/
+
         networks:
             - phyrexamp-network
 
