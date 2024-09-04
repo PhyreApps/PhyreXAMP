@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'PhyreXAMP',// Phyre Any OS Apache MySQL PHP
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => 1, //(bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
