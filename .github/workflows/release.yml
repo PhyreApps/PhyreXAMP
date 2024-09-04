@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  laravel-tests:
+  release-app:
 
     runs-on: ubuntu-latest
 
@@ -21,4 +21,4 @@ jobs:
         cd native-app
         php -r "file_exists('.env') || copy('.env.example', '.env');"
         omposer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-        php artisan native:publish 
+        php artisan native:publish
