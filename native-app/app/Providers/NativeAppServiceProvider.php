@@ -34,7 +34,7 @@ class NativeAppServiceProvider implements ProvidesPhpIni
 //            ->show();
 
         Window::open()
-            ->showDevTools(true)
+            ->showDevTools(false)
             ->width(1200)
             ->height(600);
 
