@@ -14,9 +14,9 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function boot(): void
     {
         Window::open()
-            ->showDevTools(false)
-            ->width(1000)
-            ->height(600);
+          //  ->showDevTools(false)
+            ->width(1200)
+            ->height(800);
     }
 
     /**
@@ -25,6 +25,7 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function phpIni(): array
     {
         return [
+
         ];
     }
 }
