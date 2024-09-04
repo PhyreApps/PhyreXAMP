@@ -6,6 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //Route::get('/login', function () {
 //
 //    $findGuestUser = \App\Models\User::where('email', 'guest@phyrexamp.com')->first();

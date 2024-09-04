@@ -15,8 +15,10 @@
                 <nav class="flex-1 px-2 py-4 space-y-1">
 
                     <label class="text-[0.7rem] text-white">
-                        SITES
+                        Virtual Hosts
                     </label>
+
+                    @if($this->virtualHosts)
 
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="#" class="bg-[#408be5] text-white group flex items-center px-2 py-1 text-sm font-medium rounded-md">
@@ -33,6 +35,12 @@
                         Active Website
                     </a>
 
+                    @else
+                    <div class="text-gray-400 text-[0.8rem]">
+                        No Virtual Hosts
+                    </div>
+                    @endif
+
                 </nav>
             </div>
         </div>
@@ -46,7 +54,16 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
                 </svg>
             </button>
-            <div class="flex-1 px-4 flex justify-end">
+            <div class="flex-1 px-4 flex items-center justify-between">
+
+                <div>
+                    @if($this->status == 'started')
+                    <div class="text-green-500 text-sm">
+                        Running...
+                    </div>
+                    @endif
+                </div>
+
                 <div class="flex items-center gap-2">
 
                     @if($this->status == 'stopped')
@@ -64,10 +81,6 @@
                         </button>
                     @endif
                     @if($this->status == 'started')
-
-                        <div class="text-green-500 text-sm">
-                            Running...
-                        </div>
 
                     <button type="button"
                             wire:click="stop"
@@ -88,8 +101,23 @@
         </div>
 
         <main class="flex-1">
-            <div class="p-6">
-               test
+            <div class="">
+                <div class="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+                    <h2 class="font-extrabold text-white sm:text-4xl">
+                        <span class="block text-3xl ">
+                            Welcome to PhyreXAMP!
+                        </span>
+                        <span class="block text-2xl ">
+                            Your local development environment.
+                        </span>
+                    </h2>
+                    <p class="mt-4 text-lg leading-6 text-white/80">
+                        PhyreXAMP is a local development environment that allows you to build and test websites. It is a combination of free software (Apache, MySQL, PHP) that allows you to locally develop web applications.
+                    </p>
+                    <a href="/create-virtual-host" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-black bg-white hover:bg-white/80 sm:w-auto">
+                        Create your first Virtual Host
+                    </a>
+                </div>
             </div>
         </main>
     </div>

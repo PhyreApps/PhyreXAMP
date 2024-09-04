@@ -5,6 +5,8 @@ namespace App\Livewire;
 use App\DockerClient;
 use App\Models\VirtualHost;
 use Livewire\Component;
+use Native\Laravel\Dialog;
+use Native\Laravel\Facades\Notification;
 use function Psy\sh;
 
 class Xamp extends Component
@@ -17,6 +19,10 @@ class Xamp extends Component
         $this->status = 'started';
 
         $this->dockerCli('start-container', 'phyrexamp-*');
+
+        Notification::title('PhyreXAMP Started')
+            ->message('You can now access your virtual hosts.')
+            ->show();
     }
 
     public function stop()
@@ -24,18 +30,22 @@ class Xamp extends Component
         $this->status = 'stopped';
 
         $this->dockerCli('stop-container', 'phyrexamp-*');
+
+        Notification::title('PhyreXAMP Stopped')
+            ->message('All services have been stopped.')
+            ->show();
+
     }
 
     public function mount()
     {
-        $getStatus = $this->dockerCli('status-container', 'phyrexamp-*');
-
+        $getStatus = $this->dockerCli('status-container', 'phyrexamp-httpd');
         if (str_contains($getStatus, 'is running')) {
             $this->status = 'started';
         }
 
         $getVirtualHosts = VirtualHost::all();
-        
+
         $this->virtualHosts = $getVirtualHosts->toArray();
     }
 
