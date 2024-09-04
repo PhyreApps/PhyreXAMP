@@ -22,14 +22,20 @@ new class extends Component {
     public function startCreatingVirtualHost()
     {
         $this->validate([
-            'virtualHostState.name' => 'required|string|max:255|unique:virtual_hosts,name',
-            'virtualHostState.document_root' => 'required|exists',
+            'virtualHostState.name' => 'required|string|max:255',
+            'virtualHostState.document_root' => 'required|string|max:255',
             'virtualHostState.php_version' => 'required',
         ]);
 
         $newVirtualHost = new \App\Models\VirtualHost();
         $newVirtualHost->fill($this->virtualHostState);
         $newVirtualHost->save();
+
+        $this->creatingVirtualHost = false;
+        $this->toast('success', 'Virtual Host created successfully');
+        $this->virtualHostState = [];
+
+        $this->redirect('/');
     }
 
 
@@ -38,6 +44,10 @@ new class extends Component {
         $dir = \Native\Laravel\Dialog::new()
             ->folders()
             ->open();
+
+        if (empty($dir)) {
+            return;
+        }
 
         $find = \App\Models\VirtualHost::where('document_root', $dir)->first();
         if ($find) {
@@ -67,13 +77,17 @@ new class extends Component {
                 Create new Virtual Host
             </h3>
 
-            <x-input label="Name" wire:model="virtualHostState.name" />
+            <x-input label="Name" placeholder="my-host.dev" wire:model="virtualHostState.name" />
+
+
             <x-input label="Document Root"
-                        wire:model="virtualHostState.document_root"
                      wire:click="selectDocumentRoot"
-                     wire:loading.attr="disabled"
-                     wire:loading.class="opacity-50"
-            />
+                :value="isset($virtualHostState['document_root']) ? $virtualHostState['document_root'] : ''"
+            >
+                <x-slot:append>
+                    <x-button  wire:click="selectDocumentRoot" label="Select" icon="o-folder" class="btn-primary rounded-s-none" />
+                </x-slot:append>
+            </x-input>
 
             @php
                 $phpVersions =\App\Models\SupportedPHPVersion::all();
@@ -105,9 +119,9 @@ new class extends Component {
             <p class="mt-4 text-lg leading-6 text-white/80">
                 PhyreXAMP is a local development environment that allows you to build and test websites. It is a combination of free software (Apache, MySQL, PHP) that allows you to locally develop web applications.
             </p>
-            <button type="button" wire:click="createVirtualHost" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-black bg-white hover:bg-white/80 sm:w-auto">
-                Create your first Virtual Host
-            </button>
+            <div class="mt-8">
+            <x-button wire:click="createVirtualHost" label="Create your first Virtual Host" class="btn-primary" type="submit" spinner="createVirtualHost" />
+            </div>
         </div>
     @endif
 </div>

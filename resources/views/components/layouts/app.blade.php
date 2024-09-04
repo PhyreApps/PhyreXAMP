@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="sunset">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
@@ -27,7 +27,7 @@
     {{-- MAIN --}}
     <x-main full-width>
         {{-- SIDEBAR --}}
-        <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-200 lg:bg-inherit">
+        <x-slot:sidebar drawer="main-drawer" class="bg-base-300">
 
             {{-- BRAND --}}
             <div class="pl-4 pt-4">
@@ -46,6 +46,8 @@
                     @foreach($virtualHosts as $virtualHost)
                         <x-menu-item title="{{ $virtualHost->name }}" icon="o-server" link="" />
                     @endforeach
+                @else
+                    <label class="px-4 block text-xs text-base-content">No Virtual Hosts</label>
                 @endif
 
             </x-menu>
@@ -53,6 +55,11 @@
 
         {{-- The `$slot` goes here --}}
         <x-slot:content>
+
+            <div class="mt-8">
+                @livewire('xamp')
+            </div>
+
             {{ $slot }}
         </x-slot:content>
     </x-main>

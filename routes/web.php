@@ -2,4 +2,4 @@
 
 use Livewire\Volt\Volt;
 
-Volt::route('/', 'welcome');
+Volt::route('/', 'edit-virtual-host');

@@ -15,5 +15,9 @@ export default {
     },
 
     // Add daisyUI
-    plugins: [require("daisyui")]
+    plugins: [require("daisyui")],
+
+    daisyui: {
+        themes: ["light", "dark", "sunset"],
+    },
 }
