@@ -7,6 +7,8 @@ use App\Models\VirtualHost;
 use Livewire\Component;
 use Native\Laravel\Dialog;
 use Native\Laravel\Facades\Notification;
+use Native\Laravel\Facades\Shell;
+use Native\Laravel\Facades\Window;
 use function Psy\sh;
 
 class Xamp extends Component
@@ -34,6 +36,11 @@ class Xamp extends Component
             ->message('All services have been stopped.')
             ->show();
 
+    }
+
+    public function openLocalHost()
+    {
+        Shell::openExternal('http://localhost');
     }
 
     public function mount()

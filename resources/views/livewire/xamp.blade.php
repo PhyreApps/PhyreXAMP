@@ -6,6 +6,14 @@
                 <div class="text-green-500 text-sm">
                     Running...
                 </div>
+
+                <div class="text-sm text-gray-500">
+                    <span class="font-semibold">Apache:</span>
+                    <button type="button" wire:click="openLocalHost">
+                        http://localhost
+                    </button>
+                </div>
+
             @endif
         </div>
 
