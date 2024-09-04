@@ -12,7 +12,6 @@ use function Psy\sh;
 class Xamp extends Component
 {
     public $status = 'stopped';
-    public $virtualHosts = [];
 
     public function start()
     {

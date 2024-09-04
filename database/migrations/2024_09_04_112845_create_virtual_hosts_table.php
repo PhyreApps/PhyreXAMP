@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('virtual_hosts', function (Blueprint $table) {
             $table->id();
 
-            $table->string('domain')->nullable();
+            $table->string('name')->nullable();
             $table->string('document_root')->nullable();
             $table->string('server_name')->nullable();
             $table->string('server_alias')->nullable();
