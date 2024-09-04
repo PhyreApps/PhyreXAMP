@@ -31,4 +31,4 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-e
 RUN docker-php-ext-configure intl
 
 # Install extensions
-RUN docker-php-ext-install bcmath calendar gd gmp intl mysqli pdo pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-install bcmath calendar gd intl mysqli pdo pdo_mysql mbstring zip exif pcntl

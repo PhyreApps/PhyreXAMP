@@ -4,16 +4,10 @@
         <div>
             @if($this->status == 'started')
                 <div class="text-green-500 text-sm">
-                    Running...
-                </div>
-
-                <div class="text-sm text-gray-500">
-                    <span class="font-semibold">Apache:</span>
-                    <button type="button" wire:click="openLocalHost">
+                    Running on  <button type="button" wire:click="openLocalHost">
                         http://localhost
                     </button>
                 </div>
-
             @endif
         </div>
 
@@ -47,6 +41,18 @@
                 <span wire:loading.remove>Stop</span>
                 <span wire:loading wire:target="stop">Stopping...</span>
             </button>
+
+                <button type="button"
+                        wire:click="restart"
+                        wire:loading.class="opacity-50"
+                        wire:loading.attr="disabled"
+                        class="inline-flex items-center gap-2 text-[0.8rem] p-1 px-2 border border-transparent rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M18.258 3.508a.75.75 0 0 1 .463.693v4.243a.75.75 0 0 1-.75.75h-4.243a.75.75 0 0 1-.53-1.28L14.8 6.31a7.25 7.25 0 1 0 4.393 5.783a.75.75 0 0 1 1.488-.187A8.75 8.75 0 1 1 15.93 5.18l1.51-1.51a.75.75 0 0 1 .817-.162" />
+                    </svg>
+                    <span wire:loading.remove>Restart</span>
+                    <span wire:loading wire:target="restart">Restarting...</span>
+                </button>
             @endif
 
         </div>

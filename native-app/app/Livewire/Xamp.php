@@ -38,6 +38,19 @@ class Xamp extends Component
 
     }
 
+    public function restart()
+    {
+        $this->status = 'stopped';
+
+        $this->dockerCli('restart-container', 'phyrexamp-*');
+
+        Notification::title('PhyreXAMP Restarted')
+            ->message('All services have been restarted.')
+            ->show();
+
+        $this->status = 'started';
+    }
+
     public function openLocalHost()
     {
         Shell::openExternal('http://localhost');
