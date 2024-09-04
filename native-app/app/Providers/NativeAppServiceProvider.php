@@ -34,6 +34,7 @@ class NativeAppServiceProvider implements ProvidesPhpIni
 //            ->show();
 
         Window::open()
+            ->title('PhyreXAMP')
             ->showDevTools(false)
             ->width(1200)
             ->height(600);
