@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\VirtualHostResource\Pages;
 use App\Filament\Admin\Resources\VirtualHostResource\RelationManagers;
+use App\Filament\Forms\Components\PHPNativeDialog;
 use App\Models\VirtualHost;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -24,12 +25,14 @@ class VirtualHostResource extends Resource
     {
         return $form
             ->schema([
+
                 Forms\Components\TextInput::make('domain')
                     ->label('Domain')
                     ->required()
                     ->placeholder('website.local')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('document_root')
+
+                PHPNativeDialog::make('document_root')
                     ->label('Document Root')
                     ->required()
                     ->placeholder('/var/www/website')

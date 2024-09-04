@@ -4,7 +4,9 @@ namespace App\Providers;
 
 
 use Native\Laravel\Contracts\ProvidesPhpIni;
+use Native\Laravel\Dialog;
 use Native\Laravel\Facades\MenuBar;
+use Native\Laravel\Facades\Window;
 use Native\Laravel\Menu\Menu;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
@@ -20,7 +22,6 @@ class NativeAppServiceProvider implements ProvidesPhpIni
             ->onlyShowContextMenu()
             ->withContextMenu(
                 Menu::new()
-                    ->label('PhyreXAMP')
                     ->separator()
                     ->link('/restart-apache', 'Restart Apache')
                     ->link('/restart-mysql', 'Restart MySQL')
@@ -33,9 +34,10 @@ class NativeAppServiceProvider implements ProvidesPhpIni
 //            ->show();
 
         Window::open()
-          //  ->showDevTools(false)
+            ->showDevTools(false)
             ->width(1200)
             ->height(800);
+
     }
 
     /**
